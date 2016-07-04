@@ -14,12 +14,17 @@ Plugin 'VundleVim/Vundle.vim'
 
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
-Plugin 'sickill/vim-monokai'
+"Plugin 'sickill/vim-monokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
+Plugin 'valloric/youcompleteme'
+Plugin 'morhetz/gruvbox'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kien/ctrlp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -36,15 +41,17 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " my own attemp to install plugins in vim
-"let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-"let b:syntastic_javascript_eslint_exec = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+set foldmethod=syntax
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "the following is for enabling esilnt for syntastic
@@ -60,18 +67,44 @@ nnoremap <d-k> 5k
 
 nnoremap <s-y> :NERDTree<CR>
 if has ('gui_running')
-	set guifont=Roboto\ Mono\ Light\ for\ Powerline:h16
+	set guifont=Sauce\ Code\ Powerline\ Light:h16
 endif
-colorscheme stereokai
 
 syntax enable
-colorscheme monokai
+"colorscheme molokai 
+colorscheme gruvbox
+set background=dark    " Setting dark mode with gruvox
+let g:gruvbox_bold = 0
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 
 set tabstop=2
+set shiftwidth=2
+"set expandtab
 set cursorline
 set number
  
-":AirlineTheme {solarized dark}
-
+"let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:bubblegum = 1
+let g:sol = 1
+let g:airline_theme='bubblegum'
+:set smartcase "ignore case when pattern searching, but capital letters will
+"be capital matched
+:set nolz
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$|node_modules'
 
+
+"window navagation, resizing related
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap <D-left> :vertical resize -10<cr>
+nnoremap <D-down> :resize +10<cr>
+nnoremap <D-up> :resize -10<cr>
+nnoremap <D-right> :vertical resize +10<cr>
