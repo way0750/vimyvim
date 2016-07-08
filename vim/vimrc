@@ -14,7 +14,6 @@ Plugin 'VundleVim/Vundle.vim'
 
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
-"Plugin 'sickill/vim-monokai'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
@@ -25,6 +24,9 @@ Plugin 'valloric/youcompleteme'
 Plugin 'morhetz/gruvbox'
 Plugin 'jelera/vim-javascript-syntax'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mkitt/tabline.vim'
+Plugin 'tpope/vim-surround'
+Plugin 't9md/vim-choosewin'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -60,14 +62,12 @@ let g:syntastic_javascript_checkers = ['eslint']
 inoremap jk <esc>
 nnoremap <s-j> 12j
 nnoremap <s-k> 12k
-nnoremap <s-h> <C-w>w
-nnoremap <s-l> 12l
 nnoremap <d-j> 5j
 nnoremap <d-k> 5k
 
 nnoremap <s-y> :NERDTree<CR>
 if has ('gui_running')
-	set guifont=Sauce\ Code\ Powerline\ Light:h16
+	set guifont=Sauce\ Code\ Powerline\ Light:h15
 endif
 
 syntax enable
@@ -80,7 +80,7 @@ let g:gruvbox_bold = 0
 
 set tabstop=2
 set shiftwidth=2
-"set expandtab
+set expandtab
 set cursorline
 set number
  
@@ -88,10 +88,14 @@ set number
 let g:airline_powerline_fonts = 1
 let g:bubblegum = 1
 let g:sol = 1
-let g:airline_theme='bubblegum'
-:set smartcase "ignore case when pattern searching, but capital letters will
+let g:airline_theme='light'
+
+"ignore case when pattern searching, but capital letters will
 "be capital matched
+:set ignorecase
+:set smartcase 
 :set nolz
+
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_working_path_mode = 0
@@ -108,3 +112,9 @@ nnoremap <D-left> :vertical resize -10<cr>
 nnoremap <D-down> :resize +10<cr>
 nnoremap <D-up> :resize -10<cr>
 nnoremap <D-right> :vertical resize +10<cr>
+
+:set directory=~/.vimSwapFiles//
+
+"choose-win:
+let g:choosewin_overlay_enable = 0
+nmap  <s-h> <Plug>(choosewin)
