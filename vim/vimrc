@@ -117,4 +117,6 @@ nnoremap <D-right> :vertical resize +10<cr>
 
 "choose-win:
 let g:choosewin_overlay_enable = 0
-nmap  <s-h> <Plug>(choosewin)
+"nmap  <s-h> <Plug>(choosewin)
+nmap ff <Plug>(choosewin)
+
