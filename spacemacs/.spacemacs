@@ -271,6 +271,7 @@ you should place your code here."
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
   )
   ;; local eslint setup done here
+  (setq-default create-lockfiles nil)
 
 ;;setting javascript indent
 ;;(setq-default js2-basic-offset 2) ;; is this really need?
