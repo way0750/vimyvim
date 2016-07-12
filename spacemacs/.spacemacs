@@ -272,6 +272,9 @@ you should place your code here."
   )
   ;; local eslint setup done here
 
+;;setting javascript indent
+;;(setq-default js2-basic-offset 2) ;; is this really need?
+(setq-default js-indent-level 2)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
