@@ -27,9 +27,13 @@ values."
      ;; better-defaults
      themes-megapack
      emacs-lisp
+     react
      html
      javascript
      syntax-checking
+     vim-powerline
+     eyebrowse
+     evil-snipe
      ;; git
      ;; markdown
      ;; org
@@ -111,7 +115,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Inconsolata for Powerline Medium"
-                               :size 19
+                               :size 17
                                :weight normal
                                :width normal)
    ;; The leader key
@@ -274,8 +278,23 @@ you should place your code here."
   (setq-default create-lockfiles nil)
 
 ;;setting javascript indent
-(setq-default js2-basic-offset 2) ;; is this really need?
-(setq-default js-indent-level 2)
+;;(setq-default js2-basic-offset 2) ;; is this really need?
+;;(setq-default js-indent-level 2)
+(setq-default
+ ;; js2-mode
+ js2-basic-offset 2
+ ;; web-mode
+ css-indent-offset 2
+ web-mode-markup-indent-offset 2
+ web-mode-css-indent-offset 2
+ web-mode-code-indent-offset 2
+ web-mode-attr-indent-offset 2)
+
+(with-eval-after-load 'web-mode
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
