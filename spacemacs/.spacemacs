@@ -27,8 +27,8 @@ values."
      ;; better-defaults
      themes-megapack
      emacs-lisp
-     react
      html
+     react
      javascript
      syntax-checking
      vim-powerline
@@ -280,6 +280,8 @@ you should place your code here."
 ;;setting javascript indent
 ;;(setq-default js2-basic-offset 2) ;; is this really need?
 ;;(setq-default js-indent-level 2)
+;;(add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+(add-hook 'js2-mode-hook 'react-mode)
 (setq-default
  ;; js2-mode
  js2-basic-offset 2
