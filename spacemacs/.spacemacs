@@ -31,7 +31,6 @@ values."
      react
      javascript
      syntax-checking
-     vim-powerline
      eyebrowse
      evil-snipe
      ;; git
@@ -114,10 +113,11 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Inconsolata for Powerline Medium"
-                               :size 17
+   dotspacemacs-default-font '("Roboto Mono Light for Powerline"
+                               :size 15
                                :weight normal
-                               :width normal)
+                               :width normal
+                               :powerline-scale 1.3)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
