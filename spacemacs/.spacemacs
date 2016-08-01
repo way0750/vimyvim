@@ -29,7 +29,9 @@ values."
      emacs-lisp
      html
      react
+     colors
      javascript
+     markdown
      syntax-checking
      vim-powerline
      eyebrowse
@@ -296,6 +298,17 @@ you should place your code here."
   (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
   (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
+
+;;for auto complet with snippet
+(setq-default dotspacemacs-configuration-layers
+              '((auto-completion :variables
+                                 auto-completion-enable-snippets-in-popup t)))
+
+;;for the color layer
+(setq-default dotspacemacs-configuration-layers '(
+  (colors :variables colors-enable-rainbow-identifiers t)))
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
