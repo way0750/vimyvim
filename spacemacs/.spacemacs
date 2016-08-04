@@ -35,7 +35,7 @@ You should not put any user code in this function besides modifying the variable
      markdown
      syntax-checking
      eyebrowse
-     evil-snipe
+     ;;evil-snipe
      ;; git
      ;; markdown
      ;; org
@@ -288,7 +288,7 @@ you should place your code here."
 
   ;;window related settings
   (global-set-key (kbd "s-w") (lambda () (interactive) (delete-window)))
-  
+
   (defvar windowWidth 10)
   (global-set-key (kbd "s-]") (lambda () (interactive) (evil-window-increase-width windowWidth)))
   (global-set-key (kbd "s-[") (lambda () (interactive) (evil-window-decrease-width windowWidth)))
@@ -296,7 +296,9 @@ you should place your code here."
   (global-linum-mode) ; Show line numbers by default
 
   ;;avy jump straigh to any part of word
-  (spacemacs/set-leader-keys "a j" 'avy-goto-char-2)
+  ;;(spacemacs/set-leader-keys "a j" 'avy-goto-char-2)
+  ;;(global-set-key "a j" 'avy-goto-char-2)
+  (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
 
   ;; the follwing lines set eslint to use local eslint
   (defun my/use-eslint-from-node-modules ()
