@@ -27,6 +27,7 @@ values."
      ;; better-defaults
      themes-megapack
      emacs-lisp
+     markdown
      html
      react
      colors
@@ -260,7 +261,40 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Set escape keybinding to "jk"
-  (setq-default evil-escape-key-sequence "jk" )
+  (setq-default evil-escape-key-sequence "jk")
+  ;;(define-key map "C-s" 'forward-char)
+
+  ;; how define function in lisp
+  ;; (defun name () (interactive) (commend arg))
+  ;; call this function by 'name ???? really?
+  (defun scroll6LineDown ()
+    (interactive)
+    (scroll-down-line)
+    (scroll-down-line)
+    (scroll-down-line)
+    (scroll-down-line)
+    (scroll-down-line)
+    (scroll-down-line)
+  )
+
+  (defun scroll6LineUp ()
+    (interactive)
+    (scroll-up-line)
+    (scroll-up-line)
+    (scroll-up-line)
+    (scroll-up-line)
+    (scroll-up-line)
+    (scroll-up-line))
+
+  (defun closeWindow ()
+    (interactive)
+    (delete-window)
+    )
+
+  (global-set-key (kbd "s-k") 'scroll6LineDown)
+  (global-set-key (kbd "s-j") 'scroll6LineUp)
+  (global-set-key (kbd "s-w") 'closeWindow)
+
   (global-linum-mode) ; Show line numbers by default
 
   ;; the follwing lines set eslint to use local eslint
@@ -278,6 +312,7 @@ you should place your code here."
   )
   ;; local eslint setup done here
   (setq-default create-lockfiles nil)
+;;(global-set-key (kbd "C-i") 'next-line)
 
 ;;setting javascript indent
 ;;(setq-default js2-basic-offset 2) ;; is this really need?
