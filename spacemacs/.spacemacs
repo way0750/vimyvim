@@ -264,12 +264,16 @@ you should place your code here."
   (setq-default evil-escape-key-sequence "jk")
   ;;(define-key map "C-s" 'forward-char)
 
-  ;; how define function in lisp
-  ;; (defun name () (interactive) (commend arg))
-  ;; call this function by 'name ???? really?
+  ;; how to define function in lisp
+  ;; (defun name (param1 param2, param3, etc...) (interactive) (command/function arg))
+  ;; what is (interactive)
+  ;; using a function as argument/callback:  'funtName
+  ;; make sure to use the '
+  ;;calling lisp functions: (functName arg1 arg2 arg3...)
 
-  (defvar scrollingLineAmount 4)
-  (defvar scrollingRepetAmount 10)
+  ;;<<fake smooth scroll half page up/down>>
+  (defvar scrollingLineAmount 4) ;;how many lines to move each time the evil-scroll-up/down is call
+  (defvar scrollingRepetAmount 10) ;; how many times of evil-scoll-up/down to call. Together with the native lips function: (redisplay) we will be able to scroll stop and display and scroll again, thereby creating a fake sense of 'smooth' scroll
   (defun scrollDown ()
     (interactive)
     (dotimes (n scrollingRepetAmount)
@@ -286,21 +290,33 @@ you should place your code here."
   (global-set-key (kbd "s-k") 'scrollDown)
   (global-set-key (kbd "s-j") 'scrollUp)
 
-  ;;window related settings
+
+  ;;<<window related settings>>
+  ;; closing a window qicker and more intuitive like closing tap on browser
   (global-set-key (kbd "s-w") (lambda () (interactive) (delete-window)))
 
-  (defvar windowWidth 10)
+  ;;resizing window horizontally
+  (defvar windowWidth 10) ;;how many columns to move left or right
   (global-set-key (kbd "s-]") (lambda () (interactive) (evil-window-increase-width windowWidth)))
   (global-set-key (kbd "s-[") (lambda () (interactive) (evil-window-decrease-width windowWidth)))
 
   (global-linum-mode) ; Show line numbers by default
 
-  ;;avy jump straigh to any part of word
+  ;; <<avy jump>>
+  ;;avy jump straigh to any part of word instead of only jumpping to the beginning of word
   ;;(spacemacs/set-leader-keys "a j" 'avy-goto-char-2)
   ;;(global-set-key "a j" 'avy-goto-char-2)
   (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
 
-  ;; the follwing lines set eslint to use local eslint
+  ;;<<better moving large chunk of text up and down:>>
+  ;; usage: be sure in visually selecte mode then shift-j or k to move up or down
+  ;; this will move entire line even if line is not even completely selected
+  (define-key evil-visual-state-map "J"
+    (concat ":m '>+1" (kbd "RET") "gv=gv"))
+  (define-key evil-visual-state-map "K"
+    (concat ":m '<-2" (kbd "RET") "gv=gv"))
+
+  ;;<<the follwing lines set eslint to use local eslint>>
   (defun my/use-eslint-from-node-modules ()
     (let* ((root (locate-dominating-file
                   (or (buffer-file-name) default-directory)
@@ -314,15 +330,12 @@ you should place your code here."
   (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
   )
   ;; local eslint setup done here
-  (setq-default create-lockfiles nil)
-;;(global-set-key (kbd "C-i") 'next-line)
+(setq-default create-lockfiles nil)
 
-;;setting javascript indent
-;;(setq-default js2-basic-offset 2) ;; is this really need?
-;;(setq-default js-indent-level 2)
-
-
+;;<<auto turn on react-mode when a javascript file is opened>>
 (add-hook 'js2-mode-hook 'react-mode)
+
+;;<<indent spec for javascrip>>
 (setq-default
  ;; js2-mode
  js2-basic-offset 2
