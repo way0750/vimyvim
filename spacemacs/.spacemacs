@@ -268,8 +268,8 @@ you should place your code here."
   ;; (defun name () (interactive) (commend arg))
   ;; call this function by 'name ???? really?
 
-  (defvar scrollingLineAmount 5)
-  (defvar scrollingRepetAmount 6)
+  (defvar scrollingLineAmount 3)
+  (defvar scrollingRepetAmount 10)
   (defun scrollDown ()
     (interactive)
     (dotimes (n scrollingRepetAmount)
