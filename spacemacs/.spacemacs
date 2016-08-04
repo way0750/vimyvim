@@ -5,7 +5,7 @@
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
-values."
+ values."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
    ;; `+distribution'. For now available distributions are `spacemacs-base'
@@ -240,7 +240,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-                      dotspacemacs-whitespace-cleanup nil
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -295,6 +295,8 @@ you should place your code here."
 
   (global-linum-mode) ; Show line numbers by default
 
+  ;;avy jump straigh to any part of word
+  (spacemacs/set-leader-keys "a j" 'avy-goto-char-2)
 
   ;; the follwing lines set eslint to use local eslint
   (defun my/use-eslint-from-node-modules ()
