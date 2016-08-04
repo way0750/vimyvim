@@ -282,7 +282,25 @@ you should place your code here."
 ;;setting javascript indent
 ;;(setq-default js2-basic-offset 2) ;; is this really need?
 ;;(setq-default js-indent-level 2)
-;;(add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
+(defun scrollDown ()
+  (interactive)
+  ;;(10)
+  (scroll-down-line 20)
+)
+(defun scrollUp ()
+  (interactive)
+  (scroll-up-line 20)
+)
+(defun deleteWindowFirstTry()
+  (interactive)
+  (delete-window)
+)
+
+(global-set-key (kbd "s-k") 'scrollDown)
+(global-set-key (kbd "s-j") 'scrollUp)
+(global-set-key (kbd "s-w") (lambda () (interactive) (delete-window)))
+
 (add-hook 'js2-mode-hook 'react-mode)
 (setq-default
  ;; js2-mode
