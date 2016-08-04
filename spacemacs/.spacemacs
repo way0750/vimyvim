@@ -240,7 +240,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup nil
+                      dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -268,7 +268,7 @@ you should place your code here."
   ;; (defun name () (interactive) (commend arg))
   ;; call this function by 'name ???? really?
 
-  (defvar scrollingLineAmount 3)
+  (defvar scrollingLineAmount 4)
   (defvar scrollingRepetAmount 10)
   (defun scrollDown ()
     (interactive)
@@ -285,9 +285,16 @@ you should place your code here."
 
   (global-set-key (kbd "s-k") 'scrollDown)
   (global-set-key (kbd "s-j") 'scrollUp)
+
+  ;;window related settings
   (global-set-key (kbd "s-w") (lambda () (interactive) (delete-window)))
+  
+  (defvar windowWidth 10)
+  (global-set-key (kbd "s-]") (lambda () (interactive) (evil-window-increase-width windowWidth)))
+  (global-set-key (kbd "s-[") (lambda () (interactive) (evil-window-decrease-width windowWidth)))
 
   (global-linum-mode) ; Show line numbers by default
+
 
   ;; the follwing lines set eslint to use local eslint
   (defun my/use-eslint-from-node-modules ()
@@ -315,7 +322,7 @@ you should place your code here."
 (setq-default
  ;; js2-mode
  js2-basic-offset 2
- ;; web-mode
+  ;; web-mode
  css-indent-offset 2
  web-mode-markup-indent-offset 2
  web-mode-css-indent-offset 2
