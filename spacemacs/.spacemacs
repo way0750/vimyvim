@@ -267,33 +267,25 @@ you should place your code here."
   ;; how define function in lisp
   ;; (defun name () (interactive) (commend arg))
   ;; call this function by 'name ???? really?
-  (defun scroll6LineDown ()
-    (interactive)
-    (scroll-down-line)
-    (scroll-down-line)
-    (scroll-down-line)
-    (scroll-down-line)
-    (scroll-down-line)
-    (scroll-down-line)
-  )
 
-  (defun scroll6LineUp ()
+  (defvar scrollingLineAmount 5)
+  (defvar scrollingRepetAmount 6)
+  (defun scrollDown ()
     (interactive)
-    (scroll-up-line)
-    (scroll-up-line)
-    (scroll-up-line)
-    (scroll-up-line)
-    (scroll-up-line)
-    (scroll-up-line))
-
-  (defun closeWindow ()
+    (dotimes (n scrollingRepetAmount)
+      (evil-scroll-up scrollingLineAmount)
+      (redisplay) )
+    )
+  (defun scrollUp ()
     (interactive)
-    (delete-window)
+    (dotimes (n scrollingRepetAmount)
+      (evil-scroll-down scrollingLineAmount)
+      (redisplay) )
     )
 
-  (global-set-key (kbd "s-k") 'scroll6LineDown)
-  (global-set-key (kbd "s-j") 'scroll6LineUp)
-  (global-set-key (kbd "s-w") 'closeWindow)
+  (global-set-key (kbd "s-k") 'scrollDown)
+  (global-set-key (kbd "s-j") 'scrollUp)
+  (global-set-key (kbd "s-w") (lambda () (interactive) (delete-window)))
 
   (global-linum-mode) ; Show line numbers by default
 
@@ -318,23 +310,6 @@ you should place your code here."
 ;;(setq-default js2-basic-offset 2) ;; is this really need?
 ;;(setq-default js-indent-level 2)
 
-(defun scrollDown ()
-  (interactive)
-  ;;(10)
-  (scroll-down-line 20)
-)
-(defun scrollUp ()
-  (interactive)
-  (scroll-up-line 20)
-)
-(defun deleteWindowFirstTry()
-  (interactive)
-  (delete-window)
-)
-
-(global-set-key (kbd "s-k") 'scrollDown)
-(global-set-key (kbd "s-j") 'scrollUp)
-(global-set-key (kbd "s-w") (lambda () (interactive) (delete-window)))
 
 (add-hook 'js2-mode-hook 'react-mode)
 (setq-default
