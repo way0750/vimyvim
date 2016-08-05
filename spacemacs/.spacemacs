@@ -272,18 +272,18 @@ you should place your code here."
   ;;calling lisp functions: (functName arg1 arg2 arg3...)
 
   ;;<<fake smooth scroll half page up/down>>
-  (defvar scrollingLineAmount 4) ;;how many lines to move each time the evil-scroll-up/down is call
-  (defvar scrollingRepetAmount 10) ;; how many times of evil-scoll-up/down to call. Together with the native lips function: (redisplay) we will be able to scroll stop and display and scroll again, thereby creating a fake sense of 'smooth' scroll
+  (defvar scrollLineAmount 4) ;;how many lines to move each time the evil-scroll-up/down is call
+  (defvar scrollRepetAmount 10) ;; how many times of evil-scoll-up/down to call. Together with the native lips function: (redisplay) we will be able to scroll stop and display and scroll again, thereby creating a fake sense of 'smooth' scroll
   (defun scrollDown ()
     (interactive)
-    (dotimes (n scrollingRepetAmount)
-      (evil-scroll-up scrollingLineAmount)
+    (dotimes (n scrollRepetAmount) ;; (dotimes (variableName howManyTimeToLoop) (code here and varibaleName is accessible here))
+      (evil-scroll-up scrollLineAmount)
       (redisplay) )
     )
   (defun scrollUp ()
     (interactive)
-    (dotimes (n scrollingRepetAmount)
-      (evil-scroll-down scrollingLineAmount)
+    (dotimes (n scrollRepetAmount)
+      (evil-scroll-down scrollLineAmount)
       (redisplay) )
     )
 
