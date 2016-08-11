@@ -23,7 +23,8 @@ You should not put any user code in this function besides modifying the variable
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      ;; better-defaults
      themes-megapack
      emacs-lisp
@@ -42,7 +43,7 @@ You should not put any user code in this function besides modifying the variable
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     ;; spell-checking
+     spell-checking
      ;; syntax-checking
      ;; version-control
      )
@@ -117,7 +118,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Roboto Mono Light for Powerline"
-                               :size 15
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.3)
@@ -300,7 +301,7 @@ you should place your code here."
   (global-set-key (kbd "s-]") (lambda () (interactive) (evil-window-increase-width windowWidth)))
   (global-set-key (kbd "s-[") (lambda () (interactive) (evil-window-decrease-width windowWidth)))
 
-  (global-linum-mode) ; Show line numbers by default
+  (global-linum-mode) ; Show line numbers by sdefasult
 
   ;; <<avy jump>>
   ;;avy jump straigh to any part of word instead of only jumpping to the beginning of word
@@ -316,10 +317,12 @@ you should place your code here."
   (define-key evil-visual-state-map "K"
     (concat ":m '<-2" (kbd "RET") "gv=gv"))
 
+  ;; (define-key evil-normal-state-map "o" (lambda() (interactive) (evil-insert-newline-below)))
+  ;; (define-key evil-normal-state-map "O" (lambda() (interactive) (evil-insert-newline-above)))
   ;;<<the follwing lines set eslint to use local eslint>>
   (defun my/use-eslint-from-node-modules ()
     (let* ((root (locate-dominating-file
-                  (or (buffer-file-name) default-directory)
+                (or (buffer-file-name) default-directory)
                   "node_modules"))
            (eslint (and root
                         (expand-file-name "node_modules/eslint/bin/eslint.js"
@@ -334,7 +337,6 @@ you should place your code here."
 
 ;;<<auto turn on react-mode when a javascript file is opened>>
 (add-hook 'js2-mode-hook 'react-mode)
-
 ;;<<indent spec for javascrip>>
 (setq-default
  ;; js2-mode
@@ -353,9 +355,9 @@ you should place your code here."
 
 
 ;;for auto complet with snippet
-(setq-default dotspacemacs-configuration-layers
-              '((auto-completion :variables
-                                 auto-completion-enable-snippets-in-popup t)))
+;; (setq-default dotspacemacs-configuration-layers
+;;               '((auto-completion :variables
+;;                                  auto-completion-enable-snippets-in-popup t)))
 
 ;;for the color layer
 (setq-default dotspacemacs-configuration-layers '(
