@@ -335,6 +335,11 @@ you should place your code here."
   ;; local eslint setup done here
 (setq-default create-lockfiles nil)
 
+;;opening new window like opening new tag on browser and moving cursor over to new window
+(global-set-key (kbd "s-t") (lambda ()
+                              (interactive)
+                              (split-window-right-and-focus)))
+
 ;;<<auto turn on react-mode when a javascript file is opened>>
 (add-hook 'js2-mode-hook 'react-mode)
 ;;<<indent spec for javascrip>>
