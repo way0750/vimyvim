@@ -37,7 +37,7 @@ You should not put any user code in this function besides modifying the variable
      syntax-checking
      eyebrowse
      ;;evil-snipe
-     ;; git
+     git
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -307,7 +307,7 @@ you should place your code here."
   ;;avy jump straigh to any part of word instead of only jumpping to the beginning of word
   ;;(spacemacs/set-leader-keys "a j" 'avy-goto-char-2)
   ;;(global-set-key "a j" 'avy-goto-char-2)
-  (spacemacs/set-leader-keys "SPC" 'avy-goto-char-2)
+  (spacemacs/set-leader-keys "o" 'avy-goto-char-2)
 
   ;;<<better moving large chunk of text up and down:>>
   ;; usage: be sure in visually selecte mode then shift-j or k to move up or down
