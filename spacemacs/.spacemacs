@@ -37,21 +37,22 @@ You should not put any user code in this function besides modifying the variable
      syntax-checking
      eyebrowse
      ;;evil-snipe
-     ;; git
+     git
      ;; markdown
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      spell-checking
-     ;; syntax-checking
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      f
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -261,6 +262,62 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  ;;<<auto turn on react-mode when a javascript file is opened>>
+  ;;(add-hook 'js2-mode-hook 'react-mode)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+
+  ;; Flow (JS) flycheck config (http://flowtype.org)
+  ;; from https://github.com/bodil/emacs.d/blob/master/bodil/bodil-js.el
+  ;; this will enable javascript-flow with eslint for flycheck
+  (require 'f)
+  (require 'json)
+  (require 'flycheck)
+
+  (defun flycheck-parse-flow (output checker buffer)
+    (let ((json-array-type 'list))
+      (let ((o (json-read-from-string output)))
+        (mapcar #'(lambda (errp)
+                    (let ((err (cadr (assoc 'message errp))))
+                      (flycheck-error-new
+                      :line (cdr (assoc 'line err))
+                      :column (cdr (assoc 'start err))
+                      :level 'error
+                      :message (cdr (assoc 'descr err))
+                      :filename (f-relative
+                                  (cdr (assoc 'path err))
+                                  (f-dirname (file-truename
+                                              (buffer-file-name))))
+                      :buffer buffer
+                      :checker checker)))
+                (cdr (assoc 'errors o))))))
+
+  (flycheck-define-checker javascript-flow
+    "Javascript type checking using Flow."
+    :command ("flow" "--json" source-original)
+    :error-parser flycheck-parse-flow
+    :modes react-mode
+    :next-checkers ((error . javascript-eslint))
+    )
+
+  (add-to-list 'flycheck-checkers 'javascript-flow)
+
+  ;;<<indent spec for javascrip>>
+  (setq-default
+   ;; js2-mode
+   js2-basic-offset 2
+   ;; web-mode
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2
+   )
+
+  (with-eval-after-load 'web-mode
+    (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
   ;; Set escape keybinding to "jk"
   (setq-default evil-escape-key-sequence "jk")
   ;;(define-key map "C-s" 'forward-char)
@@ -291,6 +348,8 @@ you should place your code here."
   (global-set-key (kbd "s-k") 'scrollDown)
   (global-set-key (kbd "s-j") 'scrollUp)
 
+  ;; go forward in cursor history
+  ;; (global-set-key (kbd "c-i") 'evil-jump-forward)
 
   ;;<<window related settings>>
   ;; closing a window qicker and more intuitive like closing tap on browser
@@ -340,34 +399,11 @@ you should place your code here."
                               (interactive)
                               (split-window-right-and-focus)))
 
-;;<<auto turn on react-mode when a javascript file is opened>>
-(add-hook 'js2-mode-hook 'react-mode)
-;;<<indent spec for javascrip>>
-(setq-default
- ;; js2-mode
- js2-basic-offset 2
-  ;; web-mode
- css-indent-offset 2
- web-mode-markup-indent-offset 2
- web-mode-css-indent-offset 2
- web-mode-code-indent-offset 2
- web-mode-attr-indent-offset 2)
 
-(with-eval-after-load 'web-mode
-  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-
-
-;;for auto complet with snippet
-;; (setq-default dotspacemacs-configuration-layers
-;;               '((auto-completion :variables
-;;                                  auto-completion-enable-snippets-in-popup t)))
 
 ;;for the color layer
 (setq-default dotspacemacs-configuration-layers '(
   (colors :variables colors-enable-rainbow-identifiers t)))
-
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
