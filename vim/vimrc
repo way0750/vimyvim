@@ -28,7 +28,6 @@ Plugin 'mkitt/tabline.vim'
 Plugin 'tpope/vim-surround'
 Plugin 't9md/vim-choosewin'
 Plugin 'marijnh/tern_for_vim'
-Plugin 'nathanaelkane/vim-indent-guides'
 "Plugin 'yggdroot/indentline'
 Plugin 'nathanaelkane/vim-indent-guides'
 
