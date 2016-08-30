@@ -395,9 +395,20 @@ you should place your code here."
 (setq-default create-lockfiles nil)
 
 ;;opening new window like opening new tag on browser and moving cursor over to new window
+;; (global-set-key (kbd "s-t") (lambda ()
+;;                               (interactive)
+;;                               (split-window-right-and-focus)))
+
+;; if there is a path under the cursor:
+;;   and if the path points to one specific file, this will open that file in new window
+;;   but if the path points to a directory, this will open a new window and a dialog for you to choose which file in that path to open in the new window
+;; if there is no path under the cursor, then this will open a new window and ask which file in the same directory as current file to open.
 (global-set-key (kbd "s-t") (lambda ()
                               (interactive)
-                              (split-window-right-and-focus)))
+                              (split-window-right-and-focus)
+                              (projectile-find-file-dwim)
+                              ))
+
 
 
 
