@@ -389,8 +389,7 @@ you should place your code here."
       (when (and eslint (file-executable-p eslint))
         (setq-local flycheck-javascript-eslint-executable eslint))))
 
-  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules)
-  )
+  (add-hook 'flycheck-mode-hook #'my/use-eslint-from-node-modules))
   ;; local eslint setup done here
 (setq-default create-lockfiles nil)
 
@@ -410,12 +409,19 @@ you should place your code here."
                               ))
 
 
-
-
 ;;for the color layer
 (setq-default dotspacemacs-configuration-layers '(
   (colors :variables colors-enable-rainbow-identifiers t)))
 
+
+
+
+
+;; -------------------------------------------------------------------
+;; danger
+;; DANGER!!!!
+;; DO NOT DELETE ANYTHING BELOW
+;; -------------------------------------------------------------------
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
