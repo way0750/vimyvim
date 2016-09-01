@@ -256,23 +256,28 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
-This function is called at the very end of Spacemacs initialization after
-layers configuration.
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
+  This function is called at the very end of Spacemacs initialization after
+  layers configuration.
+  This is the place where most of your configurations should be done. Unless it is
+  explicitly specified that a variable should be set before a package is loaded,
+  you should place your code here."
 
-  ;;<<auto turn on react-mode when a javascript file is opened>>
-  ;;(add-hook 'js2-mode-hook 'react-mode)
+
+  ;;-----------------------------------------------
+  ;; react related settings:
+  ;;--------------------------------------{{{{{{{{{
+
+  ;;switch to web-mode when opening a file with .js extension
   (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 
+  ;; optional checker for flowtype
   ;; Flow (JS) flycheck config (http://flowtype.org)
   ;; from https://github.com/bodil/emacs.d/blob/master/bodil/bodil-js.el
   ;; this will enable javascript-flow with eslint for flycheck
   (require 'f)
   (require 'json)
   (require 'flycheck)
-
+  
   (defun flycheck-parse-flow (output checker buffer)
     (let ((json-array-type 'list))
       (let ((o (json-read-from-string output)))
@@ -296,12 +301,20 @@ you should place your code here."
     :command ("flow" "--json" source-original)
     :error-parser flycheck-parse-flow
     :modes react-mode
+    ;; :modes web-mode
     :next-checkers ((error . javascript-eslint))
     )
 
   (add-to-list 'flycheck-checkers 'javascript-flow)
+  ;; since we are using flycheck with eslint and flow to check syntax
+  ;; and js2 has problem with flowtypw
+  ;; we need to remove the js2-minor-mode hook setted in the react layer
+  ;; since we should do it here since updating layer will reenable js2-minor-mode in react layer
+  ;; putting it here just in case
+  (remove-hook 'react-mode-hook 'js2-minor-mode)
 
-  ;;<<indent spec for javascrip>>
+  ;;}}}}}}}}}}}}}}}}}}}}}---------- react related settings end here
+
   (setq-default
    ;; js2-mode
    js2-basic-offset 2
@@ -317,6 +330,9 @@ you should place your code here."
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
+
+
+  ;; to do: put color on css
 
   ;; Set escape keybinding to "jk"
   (setq-default evil-escape-key-sequence "jk")
