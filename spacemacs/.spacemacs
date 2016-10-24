@@ -262,7 +262,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   explicitly specified that a variable should be set before a package is loaded,
   you should place your code here."
 
-
   ;;-----------------------------------------------
   ;; react related settings:
   ;;--------------------------------------{{{{{{{{{
@@ -277,7 +276,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (require 'f)
   (require 'json)
   (require 'flycheck)
-  
+
   (defun flycheck-parse-flow (output checker buffer)
     (let ((json-array-type 'list))
       (let ((o (json-read-from-string output)))
@@ -376,7 +375,13 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "s-]") (lambda () (interactive) (evil-window-increase-width windowWidth)))
   (global-set-key (kbd "s-[") (lambda () (interactive) (evil-window-decrease-width windowWidth)))
 
-  (global-linum-mode) ; Show line numbers by sdefasult
+  ; Show line numbers 
+  (global-linum-mode)
+
+  ;; Show 80-column marker
+  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (setq fci-rule-color "sky blue")
+  (global-fci-mode 1)
 
   ;; <<avy jump>>
   ;;avy jump straigh to any part of word instead of only jumpping to the beginning of word
