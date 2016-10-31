@@ -375,13 +375,23 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-set-key (kbd "s-]") (lambda () (interactive) (evil-window-increase-width windowWidth)))
   (global-set-key (kbd "s-[") (lambda () (interactive) (evil-window-decrease-width windowWidth)))
 
-  ; Show line numbers 
+  ; Show line numbers
   (global-linum-mode)
 
+  ;; code length related
+  (require 'whitespace)
+  (setq whitespace-line-column 80) ;; limit line length
+  (setq whitespace-style '(face lines-tail))
+  (add-hook 'prog-mode-hook 'whitespace-mode)
+  ;; if want to make it global
+  ;;(global-whitespace-mode +1)
+
+
   ;; Show 80-column marker
-  (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-  (setq fci-rule-color "sky blue")
-  (global-fci-mode 1)
+  ;;(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  ;;(setq fci-rule-color "sky blue")
+  ;; (setq fci-rule-color "black")
+  ;;(global-fci-mode 1)
 
   ;; <<avy jump>>
   ;;avy jump straigh to any part of word instead of only jumpping to the beginning of word
