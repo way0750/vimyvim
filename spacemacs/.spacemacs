@@ -386,7 +386,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; if want to make it global
   ;;(global-whitespace-mode +1)
 
-
   ;; Show 80-column marker
   ;;(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
   ;;(setq fci-rule-color "sky blue")
@@ -438,7 +437,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
                               (split-window-right-and-focus)
                               (projectile-find-file-dwim)
                               ))
-
 
 ;;for the color layer
 (setq-default dotspacemacs-configuration-layers '(
