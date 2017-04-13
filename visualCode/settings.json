@@ -8,11 +8,5 @@
         "before": ["<leader>", "o"],
         "after": ["<leader>", "<leader>", "s"],
       }
-    ],
-    "vim.insertModeKeyBindings": [
-       {
-           "before": ["j", "k"],
-           "after": ["<Esc>"]
-       }
-  ]
+    ]
 }

@@ -26,51 +26,6 @@ l2
 r2
 
 # Left window history (oldest to newest):
-d/Users/Way/Downloads/Zedd - True Colors (Perfect Edition) 2015..Freak37
-	07 Straight into the Fire.mp3
-7
-d/Users/Way/Downloads/Typora.app
-	..
-0
-d/Users/Way
-	Downloads
-6
-d/Users/Way/Downloads
-	..
-0
-d/Users/Way
-	Downloads
-6
-d/Users/Way/Downloads
-	selenium-server-standalone-3.3.1.jar
-41
-d/Users/Way
-	test
-24
-d/Users/Way/test
-	..
-0
-d/Users/Way
-	Google Drive
-7
-d/Users/Way/Google Drive
-	..
-0
-d/Users/Way
-	Applications
-1
-d/Users/Way/Applications
-	Chrome Apps.localized
-1
-d/Users/Way/Applications/Chrome Apps.localized
-	..
-0
-d/Users/Way/Applications
-	Chrome Apps.localized
-1
-d/Users/Way
-	Applications
-1
 d/Users/Way/Applications
 	Chrome Apps.localized
 1
@@ -197,6 +152,180 @@ d/Users/Way/.config
 d/Users
 	..
 0
+d/
+	home
+14
+d/home
+	..
+0
+d/
+	home
+14
+d/home
+	..
+0
+d/
+	Users
+9
+d/Users
+	wayhuang
+3
+d/Users/wayhuang
+	Applications
+8
+d/Users/wayhuang/Applications
+	.localized
+1
+d/Users/wayhuang
+	Applications
+8
+d/Users
+	wayhuang
+3
+d/
+	Users
+9
+d/Users
+	wayhuang
+3
+d/Users/wayhuang
+	Applications
+8
+d/Users/wayhuang/Applications
+	..
+0
+d/Users/wayhuang
+	Library
+13
+d/Users/wayhuang/Library
+	Application Support
+3
+d/Users/wayhuang/Library/Application Support
+	Code
+7
+d/Users/wayhuang/Library/Application Support/Code
+	User
+6
+d/Users/wayhuang/Library/Application Support/Code/User
+	settings.json
+2
+d/Users/wayhuang/Library/Application Support/Code
+	User
+6
+d/Users/wayhuang/Library/Application Support
+	Code
+7
+d/Users/wayhuang/Library
+	Application Support
+3
+d/Users/wayhuang
+	config
+19
+d/Users/wayhuang/config
+	vim
+6
+d/Users/wayhuang/config/vim
+	..
+0
+d/Users/wayhuang/config
+	spacemacs
+3
+d/Users/wayhuang
+	config
+19
+d/Users
+	wayhuang
+3
+d/
+	Users
+9
+d/Users
+	wayhuang
+3
+d/Users/wayhuang
+	Library
+13
+d/Users/wayhuang/Library
+	Application Support
+3
+d/Users/wayhuang/Library/Application Support
+	Code
+7
+d/Users/wayhuang/Library/Application Support/Code
+	User
+6
+d/Users/wayhuang/Library/Application Support/Code/User
+	settings.json
+2
+d/Users/wayhuang/Library/Application Support/Code
+	User
+6
+d/Users/wayhuang/Library/Application Support
+	Code
+7
+d/Users/wayhuang/Library
+	Application Support
+3
+d/Users/wayhuang
+	config
+19
+d/Users/wayhuang/config
+	visualCode
+7
+d/Users/wayhuang/config/visualCode
+	settings.json
+2
+d/Users/wayhuang/config
+	visualCode
+7
+d/Users/wayhuang
+	config
+19
+d/Users
+	wayhuang
+3
+d/Users/wayhuang
+	Library
+13
+d/Users/wayhuang/Library
+	Application Support
+3
+d/Users/wayhuang/Library/Application Support
+	Code
+7
+d/Users/wayhuang/Library/Application Support/Code
+	User
+6
+d/Users/wayhuang/Library/Application Support/Code/User
+	snippets
+1
+d/Users/wayhuang/Library/Application Support/Code
+	User
+6
+d/Users/wayhuang/Library/Application Support
+	Code
+7
+d/Users/wayhuang/Library
+	Application Support
+3
+d/Users/wayhuang
+	config
+19
+d/Users/wayhuang/config
+	vifm
+5
+d/Users/wayhuang/config/vifm
+	vifm-help.txt
+3
+d/Users/wayhuang/config
+	vifm
+5
+d/Users/wayhuang
+	Downloads
+11
+d/Users/wayhuang/Downloads
+	ps-pulse-mac-5.1r6.0-b61491-installer.dmg
+13
 d
 
 # Right window history (oldest to newest):
@@ -214,6 +343,10 @@ D
 :colorscheme zenburn
 :colorscheme darkdesert
 :q
+:set rnu
+:touch hey.md
+:touch .bash_profile
+:open .
 
 # Search history (oldest to newest):
 /david.thomas
@@ -231,6 +364,7 @@ D
 /test
 /conf
 /\.confi
+/bash
 
 # Prompt history (oldest to newest):
 ptest hey man
@@ -238,10 +372,15 @@ ptest hey man
 # Local filter history (oldest to newest):
 
 # Registers:
+""/Users/wayhuang/.local/share/vifm/Trash/000_hey.md
 
 # Directory stack (oldest to newest):
 
 # Trash content:
+t/Users/wayhuang/.local/share/vifm/Trash/000_settings.json
+	/Users/wayhuang/Library/Application Support/Code/User/settings.json
+t/Users/wayhuang/.local/share/vifm/Trash/000_hey.md
+	/Users/wayhuang/hey.md
 
 # State:
 f
