@@ -390,3 +390,4 @@ nnoremap <f8> :delete<cr>
 " nnoremap <left> <nop>
 
 :colorscheme solarized-dark
+:set rnu

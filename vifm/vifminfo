@@ -6,13 +6,13 @@
 	..
 1492052151
 'b
-	/Users/Way/bin/
+	/Users/wayhuang/bin/
 	..
-1492052358
+1492103492
 'h
-	/Users/Way/
+	/Users/wayhuang/
 	..
-1492052358
+1492103492
 
 # Bookmarks:
 
@@ -194,20 +194,26 @@ d/Users/Way
 d/Users/Way/.config
 	browser-launcher2
 1
+d/Users
+	..
+0
 d
 
 # Right window history (oldest to newest):
 D/Users/Way
 	..
 0
+D/Users
+	..
+0
 D
 
 # Command line history (oldest to newest):
 :zz
-:q
 :colorscheme astrell
 :colorscheme zenburn
 :colorscheme darkdesert
+:q
 
 # Search history (oldest to newest):
 /david.thomas
@@ -232,14 +238,10 @@ ptest hey man
 # Local filter history (oldest to newest):
 
 # Registers:
-""/Users/Way/.config/test-anything
-""/Users/Way/.config/vifm
 
 # Directory stack (oldest to newest):
 
 # Trash content:
-t/Users/Way/.local/share/vifm/Trash/000_test hey man
-	/Users/Way/test hey man
 
 # State:
 f
