@@ -395,7 +395,7 @@ nnoremap <f8> :delete<cr>
 
 "set relative line number
 :set rnu
-""nnoremap <s-j> 12j
-""nnoremap <s-k> 12k
-""nnoremap <d-j> 5j
-""nnoremap <d-k> 5k
+"nnoremap <s-j> 12j
+"nnoremap <s-k> 12k
+"nnoremap <d-j> 5j
+"nnoremap <d-k> 5k

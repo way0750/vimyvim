@@ -1,0 +1,12 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "editor.lineNumbers": "relative",
+    "vim.easymotion": true,
+    "vim.leader": "<space>",
+    "vim.otherModesKeyBindingsNonRecursive": [
+      {
+        "before": ["<leader>", "o"],
+        "after": ["<leader>", "<leader>", "s"],
+      }
+    ]
+}
