@@ -389,4 +389,13 @@ nnoremap <f8> :delete<cr>
 "
 " nnoremap <left> <nop>
 
-:colorscheme solarized-dark
+:colorscheme molokai
+
+"set jk <esc>
+
+"set relative line number
+:set rnu
+""nnoremap <s-j> 12j
+""nnoremap <s-k> 12k
+""nnoremap <d-j> 5j
+""nnoremap <d-k> 5k
