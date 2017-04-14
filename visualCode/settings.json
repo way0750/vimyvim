@@ -7,6 +7,10 @@
       {
         "before": ["<leader>", "o"],
         "after": ["<leader>", "<leader>", "s"],
+      },
+      {
+        "before": ["Cmd", "j"],
+        "after": ["ctrl", "d"],
       }
     ]
 }

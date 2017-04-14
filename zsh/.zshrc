@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/Way/.oh-my-zsh
+export ZSH=/Users/wayhuang/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,7 +53,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/Users/Way/mongodb/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,13 +82,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cls="clear"
-alias mtest="~/bashScripts/mtest.sh"
-alias subl="/Applications/Sublime\ Text.app/Contents/MacOS/Sublime\ Text"
-export PATH=/usr/local/mysql-5.7.9-osx10.9-x86_64/bin:$PATH
-export PATH=/usr/local/mysql-5.7.9-osx10.9-x86_64/support-files:$PATH
-export PATH=/Users/Way/Documents/mongodb-osx-x86_64-3.0.7/bin:$PATH
-export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
 alias gitaddcom="git add .; git commit"
-export DICPATH=/Library/Spelling/en_US:/Library/Spelling/en_US
-export PATH=/Users/Way/android/platform-tools:$PATH
-export PATH=/Users/Way/Downloads:$PATH
