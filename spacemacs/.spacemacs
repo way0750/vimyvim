@@ -18,6 +18,7 @@ You should not put any user code in this function besides modifying the variable
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     (markdown-command :variables markdown-live-preview-engine 'vmd)
      typescript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -31,7 +32,7 @@ You should not put any user code in this function besides modifying the variable
      emacs-lisp
      markdown
      html
-     react
+     ;; react
      colors
      javascript
      markdown
@@ -268,56 +269,68 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;--------------------------------------{{{{{{{{{
 
   ;;switch to web-mode when opening a file with .js extension
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
 
   ;; optional checker for flowtype
   ;; Flow (JS) flycheck config (http://flowtype.org)
   ;; from https://github.com/bodil/emacs.d/blob/master/bodil/bodil-js.el
   ;; this will enable javascript-flow with eslint for flycheck
-  (require 'f)
-  (require 'json)
-  (require 'flycheck)
+  ;; (require 'f)
+  ;; (require 'json)
+  ;; (require 'flycheck)
 
-  (defun flycheck-parse-flow (output checker buffer)
-    (let ((json-array-type 'list))
-      (let ((o (json-read-from-string output)))
-        (mapcar #'(lambda (errp)
-                    (let ((err (cadr (assoc 'message errp))))
-                      (flycheck-error-new
-                      :line (cdr (assoc 'line err))
-                      :column (cdr (assoc 'start err))
-                      :level 'error
-                      :message (cdr (assoc 'descr err))
-                      :filename (f-relative
-                                  (cdr (assoc 'path err))
-                                  (f-dirname (file-truename
-                                              (buffer-file-name))))
-                      :buffer buffer
-                      :checker checker)))
-                (cdr (assoc 'errors o))))))
+  ;; (defun flycheck-parse-flow (output checker buffer)
+  ;;   (let ((json-array-type 'list))
+  ;;     (let ((o (json-read-from-string output)))
+  ;;       (mapcar #'(lambda (errp)
+  ;;                   (let ((err (cadr (assoc 'message errp))))
+  ;;                     (flycheck-error-new
+  ;;                     :line (cdr (assoc 'line err))
+  ;;                     :column (cdr (assoc 'start err))
+  ;;                     :level 'error
+  ;;                     :message (cdr (assoc 'descr err))
+  ;;                     :filename (f-relative
+  ;;                                 (cdr (assoc 'path err))
+  ;;                                 (f-dirname (file-truename
+  ;;                                             (buffer-file-name))))
+  ;;                     :buffer buffer
+  ;;                     :checker checker)))
+  ;;               (cdr (assoc 'errors o))))))
 
-  (flycheck-define-checker javascript-flow
-    "Javascript type checking using Flow."
-    :command ("flow" "--json" source-original)
-    :error-parser flycheck-parse-flow
-    :modes react-mode
-    ;; :modes web-mode
-    :next-checkers ((error . javascript-eslint))
-    )
+  ;; (flycheck-define-checker javascript-flow
+  ;;   "Javascript type checking using Flow Type."
+  ;;   :command ("flow" "--json" source-original)
+  ;;   :error-parser flycheck-parse-flow
+  ;;   :modes react-mode
+  ;;   ;; :modes web-mode
+  ;;   :next-checkers ((error . javascript-eslint))
+  ;;   )
 
-  (add-to-list 'flycheck-checkers 'javascript-flow)
+  ;; (add-to-list 'flycheck-checkers 'javascript-flow)
   ;; since we are using flycheck with eslint and flow to check syntax
   ;; and js2 has problem with flowtypw
   ;; we need to remove the js2-minor-mode hook setted in the react layer
   ;; since we should do it here since updating layer will reenable js2-minor-mode in react layer
   ;; putting it here just in case
-  (remove-hook 'react-mode-hook 'js2-minor-mode)
+  ;; (remove-hook 'react-mode-hook 'js2-minor-mode)
 
   ;;}}}}}}}}}}}}}}}}}}}}}---------- react related settings end here
+
+  ;; Emacs server for editing input on chrome:
+  (add-to-list 'load-path "~/config/spacemacs/others")
+  (require 'edit-server)
+  (edit-server-start)
+
+  ;; just in case js2-minor-mode tries to check the js, I want to only flycheck
+  ;; with eslint
+  (remove-hook 'javascript-mode-hook 'js2-minor-mode)
 
   (setq-default
    ;; js2-mode
    js2-basic-offset 2
+   js-indent-level 2
+   ;; typescript
+   typescript-indent-level 2
    ;; web-mode
    css-indent-offset 2
    web-mode-markup-indent-offset 2
@@ -335,8 +348,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; to do: put color on css
 
   ;; Set escape keybinding to "jk"
-  (setq-default evil-escape-key-sequence "jk")
-  ;;(define-key map "C-s" 'forward-char)
+  ;; (setq-default evil-escape-key-sequence "jk")
 
   ;; how to define function in lisp
   ;; (defun name (param1 param2, param3, etc...) (interactive) (command/function arg))
@@ -445,7 +457,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
 
 
 
-
 ;; -------------------------------------------------------------------
 ;; danger
 ;; DANGER!!!!
@@ -460,7 +471,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (tide typescript-mode zonokai-theme zenburn-theme zen-and-art-theme ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode reverse-theme restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme purple-haze-theme pug-mode professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pastels-on-dark-theme paradox orgit organic-green-theme org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme less-css-mode json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web company-tern company-statistics column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode coffee-mode clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (vmd-mode web-completion-data dash-functional tern company auto-complete tide typescript-mode zonokai-theme zenburn-theme zen-and-art-theme ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode seti-theme scss-mode sass-mode reverse-theme restart-emacs rainbow-mode rainbow-identifiers rainbow-delimiters railscasts-theme purple-haze-theme pug-mode professional-theme popwin planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pastels-on-dark-theme paradox orgit organic-green-theme org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode linum-relative link-hint light-soap-theme less-css-mode json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido flatui-theme flatland-theme firebelly-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme emmet-mode elisp-slime-nav dumb-jump dracula-theme django-theme define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cyberpunk-theme company-web company-tern company-statistics column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized color-identifiers-mode coffee-mode clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
