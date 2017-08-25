@@ -1,0 +1,27 @@
+{
+  "browsers": [
+    {
+      "name": "chrome",
+      "re": {},
+      "type": "chrome",
+      "profile": "/Users/wayhuang/.config/browser-launcher2/chrome-58.0.3029.110_8f593735eecad",
+      "command": "/Applications/Google Chrome.app",
+      "version": "58.0.3029.110"
+    },
+    {
+      "name": "firefox",
+      "re": {},
+      "type": "firefox",
+      "profile": true,
+      "command": "/Applications/Firefox.app/Contents/MacOS/firefox-bin",
+      "version": "52.0.2"
+    },
+    {
+      "name": "safari",
+      "type": "safari",
+      "profile": false,
+      "command": "/Applications/Safari.app",
+      "version": "10.1"
+    }
+  ]
+}

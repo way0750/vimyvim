@@ -1,0 +1,25 @@
+Artifacts: 
+marin-frontend-service.tar.gz 
+tar file link: $1
+md5: $2
+
+marin-frontend-api-service.tar.gz 
+tar file link: $3
+md5: $4
+
+marin-frontend-report-service.tar.gz 
+tar file link: $5
+md5: $6
+
+Builds: 
+marin-frontend-service: 
+$6 here: link to latest develop's successful build
+
+marin-frontend-api-service: 
+marin-frontend-report-service: 
+$7 here: link to latest develop's successful build
+
+Projects: 
+marin-frontend-service 
+marin-frontend-api-service 
+marin-frontend-report-service
