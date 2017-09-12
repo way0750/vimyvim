@@ -1,10 +1,12 @@
-### Description: ###
-  $1
-##### Jira Link: #####
-  $2
-### Solution: ###
-  $3
-### Testing: ###
-  $4
-### After Pic: ###
-  $5
+## :question: Description: ##
+$1
+  **Jira Link:**
+$2
+  **Related PR: **
+$3
+## :bulb: Solution: ##
+$4
+## :heavy_check_mark: Testing: ##
+$5
+## :camera: Visual: ##
+$6

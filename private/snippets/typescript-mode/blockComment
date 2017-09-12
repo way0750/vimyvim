@@ -1,0 +1,5 @@
+/**
+ * $1
+ * @param {dataType} paramName
+ * @return {dataType} optionalObjectName/data shape
+ */
